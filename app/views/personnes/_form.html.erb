@@ -1,0 +1,43 @@
+<%= form_with(model: personne, local: true) do |form| %>
+  <% if personne.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(personne.errors.count, "error") %> prohibited this personne from being saved:</h2>
+
+      <ul>
+        <% personne.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+
+  <div class="field">
+    <%= form.label :nom %>
+    <%= form.text_field :nom %>
+  </div>
+
+  <div class="field">
+    <%= form.label :personne %>
+    <%= form.text_field :personne %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Voyages" %> 
+    <%= form.collection_select :voyage_ids, Voyage.order("depart").all, :id, :depart, {:prompt => true}, {:multiple => true, :size => 5 } %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Voiture" %> 
+    <%= form.collection_select :voiture_id, Voiture.order("immatriculation").all, :id, :immatriculation %>
+  </div>
+  <div class="field">
+    <%= form.label :date_naissance %>
+    <%= form.date_select :date_naissance %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

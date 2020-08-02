@@ -1,0 +1,14 @@
+<tr>
+    <td>
+        <%= link_to voiture.immatriculation, voiture_path(voiture.id) if voiture.id%>
+    </td>
+    <td>
+        <%= voiture.couleur %>
+    </td>
+    <td>
+        <%= voiture.modele %>
+    </td>
+    <td>
+        <%= voiture.date_mise_en_service %>
+    </td>
+</tr>

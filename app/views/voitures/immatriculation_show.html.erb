@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+<strong>Voitures:</strong>
+</p>
+<table>
+  <th>Immatriculation</th>
+  <th>Couleur</th>
+  <th>Modèle</th>
+  <th>Date mise en service</th>
+    <%= render "partial/voiture", voiture: @voiture  %>
+</table>
+<br>
+<p>
+  <strong>Appartient à :</strong>
+  <%= link_to @voiture.personne.try(:nom), @voiture.personne if @voiture.personne%>
+</p>
+
+
+
+<%= link_to 'Edit', edit_personne_path(@voiture.personne) %> |
+<%= link_to 'Back', personnes_path %>

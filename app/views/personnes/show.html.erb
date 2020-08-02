@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nom:</strong>
+  <%= @personne.nom %>
+</p>
+
+<p>
+  <strong>Personne:</strong>
+  <%= @personne.personne %>
+</p>
+
+<p>
+  <strong>Date naissance:</strong>
+  <%= @personne.date_naissance %>
+</p>
+<strong>Voitures:</strong>
+<% if @personne.voitures.first %>
+  <table>
+    <th>Immatriculation |</th>
+    <th>Couleur | </th>
+    <th>Modèle | </th>
+    <th>Date mise en service</th>
+  <% @personne.voitures.each do |voiture| %>
+      <%= render "partial/voiture", voiture: voiture %>
+  <%end%>
+</table>
+  <p>Une nouvelle voiture ? <%= link_to "Votre voiture", voitures_path%></p>
+  
+<% end %>
+
+<% if !@personne.voitures.first %>
+  <p>Vous n'avez pas encore de voiture : <%= link_to "Votre voiture", voitures_path if !@personne.voitures.first%></p>
+  <br>
+<% end %>
+
+<strong>Voyages:</strong>
+<% if !@personne.voyages.first %>
+  <p>Vous n'avez pas encore de voyage : <%= link_to "Ajouter un voyage", edit_personne_path(@personne) %></p>
+  
+  <% else %>
+    <table>
+    <th>Départ</th>
+    <th>Arrivée</th>
+  <% @personne.voyages.each do |voyage| %>
+    <tr>
+      <td>
+        <%= voyage.depart%>
+      </td>
+      <td>
+        <%= voyage.arrivee%> </tr>
+      </td>
+  <%end%>
+  </table>
+  <p>Ajouter un nouveau voyage : <%= link_to "Ajouter un voyage", edit_personne_path(@personne) %></p>
+  <br>
+<% end %>
+
+  
+
+
+<%= link_to 'Edit', edit_personne_path(@personne) %> |
+<%= link_to 'Back', personnes_path %>
